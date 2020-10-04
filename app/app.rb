@@ -1,13 +1,8 @@
 require 'sinatra/base'
-require 'pry'
-
 require './lib/weapon'
 
 class RpsChallenge < Sinatra::Base
-
   enable :sessions
-
-  WEAPONS = %i(rock paper scissors)
 
   get '/' do
     erb(:index)
@@ -15,7 +10,7 @@ class RpsChallenge < Sinatra::Base
 
   post '/play' do
     weapon1 = Weapon.new(params[:weapon].to_sym)
-    weapon2 = Weapon.new(WEAPONS.sample)
+    weapon2 = Weapon.new
     session[:result] = weapon1.against(weapon2)
     redirect '/result'
   end
@@ -23,5 +18,4 @@ class RpsChallenge < Sinatra::Base
   get '/result' do
     erb session[:result]
   end
-
 end

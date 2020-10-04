@@ -1,5 +1,5 @@
 class Weapon
-
+  WEAPONS = %i(rock paper scissors)
   RULES = {
     rock: :scissors,
     scissors: :paper,
@@ -8,7 +8,7 @@ class Weapon
 
   attr_reader :type
 
-  def initialize(type)
+  def initialize(type = WEAPONS.sample)
     @type = type
   end
 
